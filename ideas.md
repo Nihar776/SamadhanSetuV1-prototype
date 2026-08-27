@@ -71,3 +71,8 @@ The symbol is a **four-part rising marker**: four solid forms converge into an u
 ## Prototype scope
 
 The first prototype is frontend-only and demonstrates the primary service experience. It includes an accessible public landing and report flow, a sample local challenge feed with verification actions, a universal resolution tracker, and concise role-view panels for universities, industry partners, and government administrators. All buttons that do not change local prototype state will clearly show a “prototype action” confirmation rather than imply a completed backend process.
+
+## Style Decisions
+
+- The role-specific sign-in experience will use **non-human editorial objects and environments only**. It must not depict people, faces, hands, or silhouettes; the access screens remain warm, grounded, and recognisably civic through objects such as maps, public infrastructure, study tools, and workshop prototypes.
+- Every sign-in form will use plain-language field labels and explain that it is a frontend-only prototype. Identity references and selected documents support the demonstration of routing but are neither uploaded nor retained.

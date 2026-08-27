@@ -4,6 +4,7 @@
  */
 import { FormEvent, useState } from "react";
 import { toast } from "sonner";
+import { useLocation } from "wouter";
 import { Button } from "@/components/ui/button";
 import {
   ArrowRight,
@@ -49,6 +50,7 @@ const journey = [
 ];
 
 export default function Home() {
+  const [, setLocation] = useLocation();
   const [activeRole, setActiveRole] = useState<RoleKey>("citizen");
   const [submitted, setSubmitted] = useState(false);
   const [endorsed, setEndorsed] = useState(false);
@@ -140,6 +142,7 @@ export default function Home() {
             <button onClick={() => scrollTo("report")} className="nav-link">Report a challenge</button>
             <button onClick={() => scrollTo("journey")} className="nav-link">How it works</button>
             <button onClick={() => scrollTo("workspace")} className="nav-link">Workspaces</button>
+            <button onClick={() => setLocation("/access")} className="nav-link">Sign in</button>
           </nav>
 
           <div className="hidden items-center gap-3 md:flex">
@@ -158,8 +161,8 @@ export default function Home() {
               </select>
               <ChevronDown className="pointer-events-none absolute right-3 top-1/2 h-4 w-4 -translate-y-1/2" />
             </div>
-            <Button onClick={() => scrollTo("report")} className="rounded-full bg-[#176b4d] px-5 font-bold text-white hover:bg-[#0f573d]">
-              Report a challenge
+            <Button onClick={() => setLocation("/access")} className="rounded-full bg-[#176b4d] px-5 font-bold text-white hover:bg-[#0f573d]">
+              Sign in
             </Button>
           </div>
 
@@ -178,6 +181,7 @@ export default function Home() {
               <button onClick={() => scrollTo("report")} className="mobile-nav-link">Report a challenge</button>
               <button onClick={() => scrollTo("journey")} className="mobile-nav-link">How it works</button>
               <button onClick={() => scrollTo("workspace")} className="mobile-nav-link">Workspaces</button>
+              <button onClick={() => setLocation("/access")} className="mobile-nav-link">Sign in</button>
             </div>
           </nav>
         )}
@@ -198,8 +202,8 @@ export default function Home() {
                 Report local challenges. Work with people who can help solve them. Follow each step until the outcome is visible in your community.
               </p>
               <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-                <Button onClick={() => scrollTo("report")} size="lg" className="h-14 rounded-full bg-[#176b4d] px-7 text-base font-bold text-white hover:bg-[#0f573d]">
-                  Report a challenge <ArrowRight className="ml-2 h-5 w-5" />
+                <Button onClick={() => setLocation("/access")} size="lg" className="h-14 rounded-full bg-[#176b4d] px-7 text-base font-bold text-white hover:bg-[#0f573d]">
+                  Sign in to begin <ArrowRight className="ml-2 h-5 w-5" />
                 </Button>
                 <Button onClick={() => scrollTo("journey")} size="lg" variant="outline" className="h-14 rounded-full border-[#b8c8ba] bg-transparent px-7 text-base font-bold text-[#244d40] hover:bg-[#f0f3e9]">
                   See how it works
