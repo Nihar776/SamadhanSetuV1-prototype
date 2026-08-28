@@ -7,6 +7,7 @@ import { Link, useLocation, useParams } from "wouter";
 import { ArrowRight, Bell, Building2, CheckCircle2, ClipboardCheck, FileText, LogOut, MapPin, ShieldCheck, Sparkles } from "lucide-react";
 import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
+import IndustryDashboard from "@/pages/IndustryDashboard";
 import { PortalRole, PortalSession, SESSION_KEY, isPortalRole, roleDetails } from "@/lib/portalRoles";
 
 const workspaceContent: Record<PortalRole, {
@@ -101,6 +102,8 @@ export default function Workspace() {
   if (!isPortalRole(role) || !session) {
     return <main className="grid min-h-screen place-items-center bg-[#fbf8ef] px-4 text-center"><div><span className="mx-auto grid h-12 w-12 place-items-center rounded-full bg-[#e5eee1] text-[#176b4d]"><ShieldCheck className="h-6 w-6" /></span><p className="mt-4 font-bold text-[#315248]">Preparing your workspace…</p></div></main>;
   }
+
+  if (role === "industry") return <IndustryDashboard session={session} />;
 
   const detail = roleDetails[role];
   const content = workspaceContent[role];

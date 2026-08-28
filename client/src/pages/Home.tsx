@@ -10,6 +10,7 @@ import {
   ArrowRight,
   BadgeCheck,
   Bell,
+  Camera,
   Building2,
   Check,
   ChevronDown,
@@ -55,6 +56,8 @@ export default function Home() {
   const [submitted, setSubmitted] = useState(false);
   const [endorsed, setEndorsed] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [voiceActive, setVoiceActive] = useState(false);
+  const [evidenceName, setEvidenceName] = useState("");
 
   const scrollTo = (id: string) => {
     document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "start" });
@@ -142,7 +145,6 @@ export default function Home() {
             <button onClick={() => scrollTo("report")} className="nav-link">Report a challenge</button>
             <button onClick={() => scrollTo("journey")} className="nav-link">How it works</button>
             <button onClick={() => scrollTo("workspace")} className="nav-link">Workspaces</button>
-            <button onClick={() => setLocation("/access")} className="nav-link">Sign in</button>
           </nav>
 
           <div className="hidden items-center gap-3 md:flex">
@@ -202,8 +204,8 @@ export default function Home() {
                 Report local challenges. Work with people who can help solve them. Follow each step until the outcome is visible in your community.
               </p>
               <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-                <Button onClick={() => setLocation("/access")} size="lg" className="h-14 rounded-full bg-[#176b4d] px-7 text-base font-bold text-white hover:bg-[#0f573d]">
-                  Sign in to begin <ArrowRight className="ml-2 h-5 w-5" />
+                <Button onClick={() => scrollTo("report")} size="lg" className="h-14 rounded-full bg-[#176b4d] px-7 text-base font-bold text-white hover:bg-[#0f573d]">
+                  Report an Issue Now <ArrowRight className="ml-2 h-5 w-5" />
                 </Button>
                 <Button onClick={() => scrollTo("journey")} size="lg" variant="outline" className="h-14 rounded-full border-[#b8c8ba] bg-transparent px-7 text-base font-bold text-[#244d40] hover:bg-[#f0f3e9]">
                   See how it works
@@ -211,7 +213,7 @@ export default function Home() {
               </div>
               <div className="mt-9 flex flex-wrap gap-x-6 gap-y-3 text-sm font-semibold text-[#52675e]">
                 <span className="flex items-center gap-2"><BadgeCheck className="h-5 w-5 text-[#176b4d]" /> Easy to report</span>
-                <span className="flex items-center gap-2"><Languages className="h-5 w-5 text-[#176b4d]" /> Language-friendly</span>
+                <span className="flex items-center gap-2"><Languages className="h-5 w-5 text-[#176b4d]" /> Language-friendly <Mic className="h-4 w-4 text-[#176b4d]" aria-label="Voice-to-text support" /></span>
                 <span className="flex items-center gap-2"><ShieldCheck className="h-5 w-5 text-[#176b4d]" /> Clear progress</span>
               </div>
             </div>
@@ -290,34 +292,41 @@ export default function Home() {
                     <span className="hidden items-center gap-1.5 rounded-full bg-[#eff5ec] px-3 py-1.5 text-xs font-bold text-[#176b4d] sm:flex"><ShieldCheck className="h-4 w-4" /> Private by default</span>
                   </div>
                   <div>
-                    <label className="form-label" htmlFor="issue">What is happening? *</label>
-                    <textarea id="issue" required rows={4} className="form-input resize-none" placeholder="For example: Water has not reached our handpump for three days." />
-                    <button type="button" className="mt-2 inline-flex items-center gap-2 text-sm font-bold text-[#176b4d] hover:text-[#0f573d]" onClick={() => toast.message("Voice reporting is represented in this prototype")}> <Mic className="h-4 w-4" /> Speak instead of typing</button>
-                  </div>
-                  <div className="grid gap-5 sm:grid-cols-2">
-                    <div>
-                      <label className="form-label" htmlFor="category">Choose a topic *</label>
-                      <select id="category" required className="form-input">
-                        <option value="">Choose a topic</option>
-                        <option>Water & sanitation</option>
-                        <option>Education</option>
-                        <option>Healthcare</option>
-                        <option>Agriculture</option>
-                        <option>Roads & public spaces</option>
-                        <option>Accessibility</option>
-                      </select>
+                    <div className="flex items-baseline justify-between gap-3">
+                      <label className="form-label mb-2" htmlFor="category">Problem Category *</label>
+                      <span className="text-xs font-semibold text-[#708078]">Auto-categorized by AI</span>
                     </div>
-                    <div>
-                      <label className="form-label" htmlFor="place">Your area or PIN code *</label>
-                      <div className="relative"><MapPin className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-[#176b4d]" /><input id="place" required className="form-input pl-9" placeholder="e.g. Ranchi, 834001" /></div>
-                    </div>
+                    <select id="category" required className="form-input">
+                      <option value="">Choose the closest topic</option>
+                      <option>Infrastructure</option>
+                      <option>Water Supply</option>
+                      <option>Sanitation</option>
+                      <option>Public Health</option>
+                      <option>Agriculture</option>
+                    </select>
                   </div>
                   <div>
-                    <p className="form-label">Add a photo or video <span className="font-normal text-[#708078]">(optional)</span></p>
-                    <button type="button" className="flex w-full items-center gap-3 rounded-xl border border-dashed border-[#aac2ad] bg-[#f7faf3] p-4 text-left transition hover:border-[#176b4d] hover:bg-[#f1f7ef]" onClick={() => toast.message("Media upload is represented in this prototype")}>
-                      <span className="grid h-9 w-9 place-items-center rounded-full bg-white text-[#176b4d]"><Upload className="h-4 w-4" /></span>
-                      <span><span className="block text-sm font-bold text-[#315248]">Choose photo or video</span><span className="mt-0.5 block text-xs text-[#6c7c73]">A clear picture helps the local team understand the issue.</span></span>
-                    </button>
+                    <div className="flex items-center justify-between gap-3">
+                      <label className="form-label mb-2" htmlFor="issue">What is happening? *</label>
+                      {voiceActive && <span className="mb-2 text-xs font-bold text-[#176b4d]">Voice draft captured</span>}
+                    </div>
+                    <div className="relative">
+                      <textarea id="issue" required rows={4} className="form-input resize-none pr-16" placeholder="For example: Water has not reached our handpump for three days." />
+                      <button type="button" aria-label="Use voice-to-text" className="absolute right-3 top-3 grid h-11 w-11 place-items-center rounded-full bg-[#176b4d] text-white shadow-sm transition hover:bg-[#0f573d]" onClick={() => { setVoiceActive(true); toast.message("Voice-to-text is simulated in this prototype", { description: "A future version will transcribe your voice here." }); }}><Mic className="h-5 w-5" /></button>
+                    </div>
+                    <p className="mt-2 text-xs leading-5 text-[#718078]">You can type, or tap the microphone to describe the issue in your own words.</p>
+                  </div>
+                  <div>
+                    <label className="form-label" htmlFor="place">Your area or PIN code *</label>
+                    <div className="relative"><MapPin className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-[#176b4d]" /><input id="place" required className="form-input pl-9" placeholder="e.g. Ranchi, 834001" /></div>
+                  </div>
+                  <div>
+                    <label className="form-label" htmlFor="evidence">Upload Evidence (Photo/Video) <span className="text-[#a3641c]">*</span></label>
+                    <label htmlFor="evidence" className="flex w-full cursor-pointer items-center gap-3 rounded-xl border border-dashed border-[#8fb696] bg-[#f7faf3] p-4 text-left transition hover:border-[#176b4d] hover:bg-[#f1f7ef]">
+                      <span className="grid h-11 w-11 place-items-center rounded-full bg-white text-[#176b4d] shadow-sm"><Camera className="h-5 w-5" /></span>
+                      <span><span className="block text-sm font-bold text-[#315248]">{evidenceName || "Choose a photo or video"}</span><span className="mt-0.5 block text-xs text-[#6c7c73]">A supporting image or clip is required for this prototype submission.</span></span>
+                    </label>
+                    <input id="evidence" name="evidence" type="file" required accept="image/*,video/*" className="sr-only" onChange={(event) => setEvidenceName(event.target.files?.[0]?.name || "")} />
                   </div>
                   <Button type="submit" className="h-12 w-full rounded-full bg-[#176b4d] text-base font-bold text-white hover:bg-[#0f573d]">Send report <Send className="ml-2 h-4 w-4" /></Button>
                 </form>

@@ -16,7 +16,7 @@ type Field = {
   label: string;
   hint?: string;
   placeholder?: string;
-  type?: "text" | "file" | "textarea";
+  type?: "text" | "tel" | "email" | "otp" | "file" | "textarea";
   accept?: string;
 };
 
@@ -28,10 +28,12 @@ const formDetails: Record<PortalRole, { eyebrow: string; heading: string; intro:
     primaryField: "fullName",
     fields: [
       { id: "fullName", label: "Your full name", placeholder: "Enter your name" },
-      { id: "identityReference", label: "Identity check reference", hint: "Use the reference you would provide for account verification.", placeholder: "Enter your reference" },
+      { id: "mobile", label: "Mobile number", hint: "We will send a one-time code to this number.", placeholder: "Enter your mobile number", type: "tel" },
+      { id: "email", label: "Email address", hint: "We will send a second one-time code to this address.", placeholder: "Enter your email address", type: "email" },
+      { id: "mobileOtp", label: "Mobile verification code", placeholder: "Enter the 6-digit code", type: "otp" },
+      { id: "emailOtp", label: "Email verification code", placeholder: "Enter the 6-digit code", type: "otp" },
       { id: "area", label: "Locality or village", placeholder: "For example: Doranda, Ranchi" },
-      { id: "postalCode", label: "Postal code", placeholder: "Enter your six-digit postal code" },
-      { id: "challenge", label: "What challenge are you facing?", hint: "A short description is enough to open your local workspace.", placeholder: "For example: The community handpump has not provided water this week.", type: "textarea" },
+      { id: "preferredLanguage", label: "Preferred language", placeholder: "For example: Hindi, English, or Nagpuri" },
     ],
   },
   university: {
@@ -65,7 +67,7 @@ const formDetails: Record<PortalRole, { eyebrow: string; heading: string; intro:
     primaryField: "ownerName",
     fields: [
       { id: "ownerName", label: "Primary contact name", placeholder: "Enter the owner or authorised contact" },
-      { id: "identityReference", label: "Identity check reference", hint: "Use the reference required for partner verification.", placeholder: "Enter your verification reference" },
+      { id: "identityReference", label: "Partner verification reference", hint: "Use the reference required for partner verification.", placeholder: "Enter your verification reference" },
       { id: "gstin", label: "GST identification number", placeholder: "Enter your GSTIN" },
       { id: "companyName", label: "Registered organisation name", placeholder: "Enter your company name" },
       { id: "sector", label: "Sector and core expertise", placeholder: "For example: Renewable energy, water systems" },
@@ -114,9 +116,10 @@ export default function Access() {
     if (role !== undefined && !isPortalRole(role)) setLocation("/access");
   }, [role, setLocation]);
 
-  if (!isPortalRole(role)) return <AccessChooser />;
+    if (!isPortalRole(role)) return <AccessChooser />;
 
   const detail = roleDetails[role];
+
   const form = formDetails[role];
   const Icon = detail.Icon;
 
@@ -127,6 +130,11 @@ export default function Access() {
     data.forEach((value, key) => {
       if (typeof value === "string") profile[key] = value.trim();
     });
+
+    if (role === "citizen" && (profile.mobileOtp !== "123456" || profile.emailOtp !== "123456")) {
+      toast.error("Use the prototype code 123456 in both verification fields.");
+      return;
+    }
 
     const session: PortalSession = {
       role,
@@ -154,6 +162,7 @@ export default function Access() {
 
             <form onSubmit={handleSubmit} className="mt-9 space-y-5 rounded-[26px] border border-[#d7e2d3] bg-[#fffdf6] p-5 shadow-[0_14px_34px_rgba(29,56,44,0.08)] sm:p-7">
               <div className="flex items-start gap-3 border-b border-[#e3eadf] pb-5 text-sm leading-6 text-[#5a6e64]"><LockKeyhole className="mt-0.5 h-5 w-5 shrink-0 text-[#176b4d]" /><p><strong className="text-[#315248]">Prototype privacy note:</strong> Your details are used only to demonstrate role-based routing. Files are not uploaded or retained.</p></div>
+              {role === "citizen" && <div className="rounded-xl border border-[#ecd6a3] bg-[#fff7e6] p-4 text-sm leading-6 text-[#75521a]"><strong>Simulated OTP access:</strong> use <span className="rounded bg-[#f7e8bf] px-1.5 py-0.5 font-extrabold tracking-[0.08em]">123456</span> for both mobile and email verification.</div>}
               {form.fields.map((field) => (
                 <div key={field.id}>
                   <label className="form-label" htmlFor={field.id}>{field.label} <span className="text-[#a3641c]">*</span></label>
@@ -162,7 +171,7 @@ export default function Access() {
                   ) : field.type === "file" ? (
                     <Input id={field.id} name={field.id} required type="file" accept={field.accept} className="auth-file-input" />
                   ) : (
-                    <Input id={field.id} name={field.id} required placeholder={field.placeholder} className="auth-input" />
+                    <Input id={field.id} name={field.id} required placeholder={field.placeholder} type={field.type === "otp" ? "text" : field.type || "text"} inputMode={field.type === "otp" ? "numeric" : undefined} maxLength={field.type === "otp" ? 6 : undefined} pattern={field.type === "otp" ? "[0-9]{6}" : undefined} className="auth-input" />
                   )}
                   {field.hint && <p className="mt-2 text-xs leading-5 text-[#718078]">{field.hint}</p>}
                 </div>
