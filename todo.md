@@ -21,3 +21,12 @@
 
 - Internal design-reminder comments may still refer to the original Village Signal direction; visible user-facing branding has been updated to SamadhanSetu.
 - The project remains a static prototype; the citizen confirmation action is simulated.
+
+## Latest section relocation request
+
+- [x] Verify whether the journey section remains on the landing page.
+- [x] Verify whether the citizen reporting section remains on the landing page.
+- [x] Move both requested sections into the citizen dashboard if they are still present.
+- [x] Validate the landing page and citizen dashboard, then create a checkpoint.
+
+The user’s latest visual intent applies to the sections previously targeted near lines 235 and 265 in Home.tsx.

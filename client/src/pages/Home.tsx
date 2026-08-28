@@ -142,8 +142,8 @@ export default function Home() {
           </button>
 
           <nav className="hidden items-center gap-7 text-sm font-semibold text-[#455c52] md:flex" aria-label="Primary navigation">
-            <button onClick={() => scrollTo("report")} className="nav-link">Report a challenge</button>
-            <button onClick={() => scrollTo("journey")} className="nav-link">How it works</button>
+            <button onClick={() => setLocation("/access/citizen")} className="nav-link">Report a challenge</button>
+            <button onClick={() => scrollTo("workspace")} className="nav-link">How it works</button>
             <button onClick={() => scrollTo("workspace")} className="nav-link">Workspaces</button>
           </nav>
 
@@ -180,8 +180,8 @@ export default function Home() {
         {menuOpen && (
           <nav className="border-t border-[#dfe4d8] bg-[#fbf8ef] px-4 py-4 md:hidden" aria-label="Mobile navigation">
             <div className="flex flex-col gap-2">
-              <button onClick={() => scrollTo("report")} className="mobile-nav-link">Report a challenge</button>
-              <button onClick={() => scrollTo("journey")} className="mobile-nav-link">How it works</button>
+              <button onClick={() => setLocation("/access/citizen")} className="mobile-nav-link">Report a challenge</button>
+              <button onClick={() => scrollTo("workspace")} className="mobile-nav-link">How it works</button>
               <button onClick={() => scrollTo("workspace")} className="mobile-nav-link">Workspaces</button>
               <button onClick={() => setLocation("/access")} className="mobile-nav-link">Sign in</button>
             </div>
@@ -204,10 +204,10 @@ export default function Home() {
                 Report local challenges. Work with people who can help solve them. Follow each step until the outcome is visible in your community.
               </p>
               <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-                <Button onClick={() => scrollTo("report")} size="lg" className="h-14 rounded-full bg-[#176b4d] px-7 text-base font-bold text-white hover:bg-[#0f573d]">
+                <Button onClick={() => setLocation("/access/citizen")} size="lg" className="h-14 rounded-full bg-[#176b4d] px-7 text-base font-bold text-white hover:bg-[#0f573d]">
                   Report an Issue Now <ArrowRight className="ml-2 h-5 w-5" />
                 </Button>
-                <Button onClick={() => scrollTo("journey")} size="lg" variant="outline" className="h-14 rounded-full border-[#b8c8ba] bg-transparent px-7 text-base font-bold text-[#244d40] hover:bg-[#f0f3e9]">
+                <Button onClick={() => scrollTo("workspace")} size="lg" variant="outline" className="h-14 rounded-full border-[#b8c8ba] bg-transparent px-7 text-base font-bold text-[#244d40] hover:bg-[#f0f3e9]">
                   See how it works
                 </Button>
               </div>
@@ -232,110 +232,6 @@ export default function Home() {
           </div>
         </section>
 
-        <section id="journey" className="scroll-mt-24 border-b border-[#dfe4d8] bg-[#f0f3e9] py-12 sm:py-16">
-          <div className="mx-auto max-w-[1440px] px-4 sm:px-6 lg:px-10">
-            <div className="flex flex-col justify-between gap-5 md:flex-row md:items-end">
-              <div>
-                <p className="eyebrow">A transparent journey</p>
-                <h2 className="mt-3 max-w-xl font-display text-4xl font-semibold tracking-[-0.04em] text-[#19332b] sm:text-5xl">Your report is now moving toward a solution.</h2>
-              </div>
-              <p className="max-w-md text-base leading-7 text-[#5a7066]">Everyone sees the next responsible step. No technical language, no guessing what happens after you report.</p>
-            </div>
-
-            <div className="mt-10 overflow-x-auto pb-2">
-              <div className="min-w-[700px] rounded-[22px] border border-[#d1ddce] bg-[#fbf8ef] p-5 sm:p-7">
-                <div className="flex items-start">
-                  {journey.map((step, index) => (
-                    <div className="flex min-w-0 flex-1 items-start" key={step.label}>
-                      <div className="flex min-w-[100px] flex-col items-start">
-                        <span className={`grid h-10 w-10 place-items-center rounded-full border-2 ${step.state === "complete" ? "border-[#176b4d] bg-[#176b4d] text-white" : step.state === "active" ? "border-[#e5a53a] bg-[#fff5df] text-[#966114]" : "border-[#c8d4c8] bg-[#fbf8ef] text-[#9aa8a0]"}`}>
-                          {step.state === "complete" ? <Check className="h-5 w-5" /> : <span className="text-sm font-bold">{index + 1}</span>}
-                        </span>
-                        <span className={`mt-3 text-sm font-bold ${step.state === "upcoming" ? "text-[#829088]" : "text-[#244d40]"}`}>{step.label}</span>
-                      </div>
-                      {index < journey.length - 1 && <div className={`mt-5 h-[2px] flex-1 ${index < 2 ? "bg-[#176b4d]" : "bg-[#d3ddd2]"}`} />}
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <section id="report" className="scroll-mt-24 border-b border-[#dfe4d8] py-14 sm:py-20">
-          <div className="mx-auto grid max-w-[1240px] gap-10 px-4 sm:px-6 lg:grid-cols-[0.78fr_1.22fr] lg:px-10">
-            <div>
-              <p className="eyebrow">For citizens and local groups</p>
-              <h2 className="mt-3 font-display text-4xl font-semibold tracking-[-0.04em] text-[#19332b] sm:text-5xl">Tell us what needs attention.</h2>
-              <p className="mt-5 max-w-md text-base leading-7 text-[#587066]">Use simple words. Add a photo if it helps. A local team will review your report before it moves forward.</p>
-              <div className="mt-8 border-l-4 border-[#e5a53a] pl-4 text-sm leading-6 text-[#4d665b]">
-                <strong className="text-[#244d40]">Prototype note:</strong> This form demonstrates the reporting flow. It does not send information to a real government service.
-              </div>
-            </div>
-
-            <div className="field-note-card p-5 sm:p-8">
-              {submitted ? (
-                <div className="flex min-h-[360px] flex-col items-start justify-center py-8">
-                  <span className="grid h-14 w-14 place-items-center rounded-full bg-[#dcebdd] text-[#176b4d]"><Check className="h-7 w-7" /></span>
-                  <p className="mt-6 text-sm font-bold uppercase tracking-[0.13em] text-[#176b4d]">Report received</p>
-                  <h3 className="mt-2 font-display text-4xl font-semibold tracking-[-0.04em]">Thank you for speaking up.</h3>
-                  <p className="mt-4 max-w-lg text-base leading-7 text-[#557066]">Your local challenge has been placed in the review queue. In the full platform, you would receive updates as it is checked, matched, and worked on.</p>
-                  <Button className="mt-7 rounded-full bg-[#176b4d] px-6 font-bold text-white hover:bg-[#0f573d]" onClick={() => setSubmitted(false)}>Report another challenge</Button>
-                </div>
-              ) : (
-                <form onSubmit={submitReport} className="space-y-6">
-                  <div className="flex items-center justify-between gap-4 border-b border-[#e3e7db] pb-5">
-                    <div>
-                      <p className="text-lg font-bold text-[#244d40]">Report a local challenge</p>
-                      <p className="mt-1 text-sm text-[#63766d]">Fields marked with an asterisk are required.</p>
-                    </div>
-                    <span className="hidden items-center gap-1.5 rounded-full bg-[#eff5ec] px-3 py-1.5 text-xs font-bold text-[#176b4d] sm:flex"><ShieldCheck className="h-4 w-4" /> Private by default</span>
-                  </div>
-                  <div>
-                    <div className="flex items-baseline justify-between gap-3">
-                      <label className="form-label mb-2" htmlFor="category">Problem Category *</label>
-                      <span className="text-xs font-semibold text-[#708078]">Auto-categorized by AI</span>
-                    </div>
-                    <select id="category" required className="form-input">
-                      <option value="">Choose the closest topic</option>
-                      <option>Infrastructure</option>
-                      <option>Water Supply</option>
-                      <option>Sanitation</option>
-                      <option>Public Health</option>
-                      <option>Agriculture</option>
-                    </select>
-                  </div>
-                  <div>
-                    <div className="flex items-center justify-between gap-3">
-                      <label className="form-label mb-2" htmlFor="issue">What is happening? *</label>
-                      {voiceActive && <span className="mb-2 text-xs font-bold text-[#176b4d]">Voice draft captured</span>}
-                    </div>
-                    <div className="relative">
-                      <textarea id="issue" required rows={4} className="form-input resize-none pr-16" placeholder="For example: Water has not reached our handpump for three days." />
-                      <button type="button" aria-label="Use voice-to-text" className="absolute right-3 top-3 grid h-11 w-11 place-items-center rounded-full bg-[#176b4d] text-white shadow-sm transition hover:bg-[#0f573d]" onClick={() => { setVoiceActive(true); toast.message("Voice-to-text is simulated in this prototype", { description: "A future version will transcribe your voice here." }); }}><Mic className="h-5 w-5" /></button>
-                    </div>
-                    <p className="mt-2 text-xs leading-5 text-[#718078]">You can type, or tap the microphone to describe the issue in your own words.</p>
-                  </div>
-                  <div>
-                    <label className="form-label" htmlFor="place">Your area or PIN code *</label>
-                    <div className="relative"><MapPin className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-[#176b4d]" /><input id="place" required className="form-input pl-9" placeholder="e.g. Ranchi, 834001" /></div>
-                  </div>
-                  <div>
-                    <label className="form-label" htmlFor="evidence">Upload Evidence (Photo/Video) <span className="text-[#a3641c]">*</span></label>
-                    <label htmlFor="evidence" className="flex w-full cursor-pointer items-center gap-3 rounded-xl border border-dashed border-[#8fb696] bg-[#f7faf3] p-4 text-left transition hover:border-[#176b4d] hover:bg-[#f1f7ef]">
-                      <span className="grid h-11 w-11 place-items-center rounded-full bg-white text-[#176b4d] shadow-sm"><Camera className="h-5 w-5" /></span>
-                      <span><span className="block text-sm font-bold text-[#315248]">{evidenceName || "Choose a photo or video"}</span><span className="mt-0.5 block text-xs text-[#6c7c73]">A supporting image or clip is required for this prototype submission.</span></span>
-                    </label>
-                    <input id="evidence" name="evidence" type="file" required accept="image/*,video/*" className="sr-only" onChange={(event) => setEvidenceName(event.target.files?.[0]?.name || "")} />
-                  </div>
-                  <Button type="submit" className="h-12 w-full rounded-full bg-[#176b4d] text-base font-bold text-white hover:bg-[#0f573d]">Send report <Send className="ml-2 h-4 w-4" /></Button>
-                </form>
-              )}
-            </div>
-          </div>
-        </section>
-
-        
 
         <section id="workspace" className="scroll-mt-24 py-14 sm:py-20">
           <div className="mx-auto max-w-[1240px] px-4 sm:px-6 lg:px-10">
