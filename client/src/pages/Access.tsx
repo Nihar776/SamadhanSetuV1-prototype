@@ -4,7 +4,7 @@
  */
 import { FormEvent, useEffect } from "react";
 import { Link, useLocation, useParams } from "wouter";
-import { ArrowLeft, ArrowRight, CheckCircle2, FileCheck2, LockKeyhole, ShieldCheck } from "lucide-react";
+import { ArrowLeft, ArrowRight, CheckCircle2, FileCheck2, LockKeyhole } from "lucide-react";
 import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -33,7 +33,7 @@ const formDetails: Record<PortalRole, { eyebrow: string; heading: string; intro:
       { id: "mobileOtp", label: "Mobile verification code", placeholder: "Enter the 6-digit code", type: "otp" },
       { id: "emailOtp", label: "Email verification code", placeholder: "Enter the 6-digit code", type: "otp" },
       { id: "area", label: "Locality or village", placeholder: "For example: Doranda, Ranchi" },
-      { id: "preferredLanguage", label: "Preferred language", placeholder: "For example: Hindi, English, or Nagpuri" },
+
     ],
   },
   university: {
@@ -150,7 +150,7 @@ export default function Access() {
 
   return (
     <main className="access-shell">
-      <div className="mx-auto grid min-h-screen max-w-[1440px] lg:grid-cols-[1.03fr_0.97fr]">
+      <div className="mx-auto flex min-h-screen max-w-[1440px] items-start justify-center">
         <section className="flex px-4 py-8 sm:px-8 sm:py-10 lg:px-14 lg:py-12">
           <div className="mx-auto flex w-full max-w-[570px] flex-col">
             <Link href="/access" className="brand-back"><ArrowLeft className="h-4 w-4" /> Choose another workspace</Link>
@@ -181,14 +181,7 @@ export default function Access() {
           </div>
         </section>
 
-        <aside className="relative hidden overflow-hidden bg-[#e6eee2] lg:block">
-          <img src={detail.image} alt={detail.imageAlt} className="absolute inset-0 h-full w-full object-cover" />
-          <div className="absolute inset-x-0 bottom-0 h-2/5 bg-gradient-to-t from-[#153d30]/80 via-[#153d30]/20 to-transparent" />
-          <div className="absolute bottom-12 left-12 right-12 max-w-md text-white">
-            <div className="mb-4 flex items-center gap-2 text-sm font-bold uppercase tracking-[0.13em] text-[#e7c171]"><ShieldCheck className="h-4 w-4" /> Clear, controlled access</div>
-            <p className="font-display text-4xl font-semibold leading-tight tracking-[-0.04em]">The right people see the next responsible action.</p>
-          </div>
-        </aside>
+
       </div>
     </main>
   );

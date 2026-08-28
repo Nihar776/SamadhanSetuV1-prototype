@@ -132,7 +132,7 @@ export default function Home() {
           >
             <img
               className="h-10 w-10 object-contain"
-              src="/manus-storage/village-signal-mark_01384756.png"
+              src="/images/logo-mark.png"
               alt="SamadhanSetu symbol"
             />
             <span>
@@ -220,9 +220,9 @@ export default function Home() {
 
             <div className="relative min-h-[340px] overflow-hidden rounded-[28px] border border-[#d6dfd4] bg-[#e9efe6] shadow-[0_18px_45px_rgba(29,56,44,0.10)] sm:min-h-[420px]">
               <img
-                src="/manus-storage/village-signal-hero_5056f2df.png"
+                src="/images/hero.png"
                 alt="Community members, students, industry experts, and an official discussing a local water solution"
-                className="absolute inset-0 h-full w-full object-cover"
+                className="absolute inset-0 h-full w-full object-cover object-right"
               />
               <div className="absolute bottom-4 left-4 max-w-[270px] rounded-2xl border border-white/70 bg-[#fffdf6]/95 p-4 shadow-lg backdrop-blur sm:bottom-6 sm:left-6">
                 <p className="text-xs font-bold uppercase tracking-[0.13em] text-[#176b4d]">Connected effort</p>
@@ -285,14 +285,14 @@ export default function Home() {
               <p className="mt-5 max-w-lg text-base leading-7 text-[#536b60]">Universities develop ideas with students and mentors. Industry partners support promising pilots. Government can monitor progress and enable implementation.</p>
               <div className="mt-7 flex flex-wrap gap-3 text-sm font-bold text-[#315748]"><span className="inline-flex items-center gap-2"><GraduationCap className="h-5 w-5 text-[#176b4d]" /> Universities</span><span className="inline-flex items-center gap-2"><Factory className="h-5 w-5 text-[#176b4d]" /> Industry</span><span className="inline-flex items-center gap-2"><Landmark className="h-5 w-5 text-[#176b4d]" /> Government</span></div>
             </div>
-            <div className="overflow-hidden rounded-[24px] border border-[#cfdcca] shadow-[0_14px_30px_rgba(32,69,51,0.08)]"><img src="/manus-storage/village-signal-collaboration_5aa9b381.png" alt="Students, a mentor, an engineer, and a municipal official collaborating around an irrigation prototype" className="h-full min-h-[310px] w-full object-cover" /></div>
+            <div className="overflow-hidden rounded-[24px] border border-[#cfdcca] shadow-[0_14px_30px_rgba(32,69,51,0.08)]"><img src="/images/collaboration.png" alt="Students, a mentor, an engineer, and a municipal official collaborating around an irrigation prototype" className="h-full min-h-[310px] w-full object-cover" /></div>
           </div>
         </section>
       </main>
 
       <footer className="bg-[#193f31] text-white">
         <div className="mx-auto flex max-w-[1440px] flex-col gap-6 px-4 py-9 sm:px-6 md:flex-row md:items-center md:justify-between lg:px-10">
-          <div className="flex items-center gap-3"><img src="/manus-storage/village-signal-mark_01384756.png" alt="" className="h-10 w-10" /><div><p className="font-bold">SamadhanSetu</p><p className="mt-1 text-sm text-[#c8dacb]">A prototype for community-led innovation.</p></div></div>
+          <div className="flex items-center gap-3"><img src="/images/logo-mark.png" alt="" className="h-10 w-10" /><div><p className="font-bold">SamadhanSetu</p><p className="mt-1 text-sm text-[#c8dacb]">A prototype for community-led innovation.</p></div></div>
           <div className="flex flex-wrap gap-x-6 gap-y-3 text-sm font-semibold text-[#d7e5d9]"><button onClick={() => toast.message("Help centre is represented in this prototype")} className="footer-link"><CircleHelp className="h-4 w-4" /> Help</button><button onClick={() => toast.message("Updates are represented in this prototype")} className="footer-link"><ClipboardCheck className="h-4 w-4" /> My updates</button><button onClick={() => toast.message("Public information page is represented in this prototype")} className="footer-link"><FileText className="h-4 w-4" /> About the portal</button></div>
         </div>
       </footer>

@@ -123,7 +123,7 @@ export default function IndustryDashboard({ session }: { session?: PortalSession
     <main className="min-h-screen bg-[#f4f6ee] text-[#19332b]">
       <header className="border-b border-[#d5e0d3] bg-[#fffdf6]">
         <div className="mx-auto flex h-[74px] max-w-[1440px] items-center justify-between px-4 sm:px-6 lg:px-10">
-          <Link href="/" className="flex items-center gap-3 rounded-md"><img src="/manus-storage/village-signal-mark_01384756.png" className="h-10 w-10" alt="SamadhanSetu symbol" /><span><span className="block font-bold tracking-[-0.02em]">SamadhanSetu</span><span className="block text-[11px] font-semibold uppercase tracking-[0.12em] text-[#6b7b73]">Industry solution marketplace</span></span></Link>
+          <Link href="/" className="flex items-center gap-3 rounded-md"><img src="/images/logo-mark.png" className="h-10 w-10" alt="SamadhanSetu symbol" /><span><span className="block font-bold tracking-[-0.02em]">SamadhanSetu</span><span className="block text-[11px] font-semibold uppercase tracking-[0.12em] text-[#6b7b73]">Industry solution marketplace</span></span></Link>
           <div className="flex items-center gap-3"><span className="hidden text-sm font-semibold text-[#5d7067] sm:inline">Signed in as <strong className="text-[#244d40]">{displayName}</strong></span><Button variant="outline" onClick={handleSignOut} className="rounded-full border-[#bfcebf] bg-white text-[#36594c] hover:bg-[#eef4eb]"><LogOut className="mr-2 h-4 w-4" /> Sign out</Button></div>
         </div>
       </header>

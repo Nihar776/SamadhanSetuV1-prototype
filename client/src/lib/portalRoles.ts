@@ -32,7 +32,7 @@ export const roleDetails: Record<PortalRole, {
     workspace: "My local workspace",
     action: "Continue to my workspace",
     Icon: Building2,
-    image: "/manus-storage/village-signal-citizen-access_73b908bb.png",
+    image: "/images/citizen-access.png",
     imageAlt: "An illustrated village handpump, location signal, and smartphone with a check symbol",
   },
   university: {
@@ -42,7 +42,7 @@ export const roleDetails: Record<PortalRole, {
     workspace: "University problem board",
     action: "Enter university workspace",
     Icon: GraduationCap,
-    image: "/manus-storage/village-signal-university-access_2a4c336e.png",
+    image: "/images/university-access.png",
     imageAlt: "An illustrated study desk with academic notes and a water-quality prototype",
   },
   industry: {
@@ -52,7 +52,7 @@ export const roleDetails: Record<PortalRole, {
     workspace: "Partner collaboration desk",
     action: "Enter partner workspace",
     Icon: Factory,
-    image: "/manus-storage/village-signal-industry-access_ab1180c7.png",
+    image: "/images/industry-access.png",
     imageAlt: "An illustrated workshop bench with a solar panel and irrigation prototype",
   },
   government: {
@@ -62,7 +62,7 @@ export const roleDetails: Record<PortalRole, {
     workspace: "Local verification desk",
     action: "Enter verification desk",
     Icon: Landmark,
-    image: "/manus-storage/village-signal-government-access_5f48cdd2.png",
+    image: "/images/government-access.png",
     imageAlt: "An illustrated civic planning table with a district map and approval stamp",
   },
 };
