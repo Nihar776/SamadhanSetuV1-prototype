@@ -82,7 +82,7 @@ function AccessChooser() {
   return (
     <main className="access-shell">
       <section className="mx-auto max-w-[1160px] px-4 py-10 sm:px-6 sm:py-14 lg:px-10">
-        <Link href="/" className="brand-back"><ArrowLeft className="h-4 w-4" /> Back to Village Signal</Link>
+        <Link href="/" className="brand-back"><ArrowLeft className="h-4 w-4" /> Back to SamadhanSetu</Link>
         <div className="mt-10 max-w-2xl">
           <p className="eyebrow">Choose your workspace</p>
           <h1 className="mt-3 font-display text-5xl font-semibold tracking-[-0.05em] text-[#19332b] sm:text-6xl">How will you take part?</h1>

@@ -123,13 +123,13 @@ export default function IndustryDashboard({ session }: { session?: PortalSession
     <main className="min-h-screen bg-[#f4f6ee] text-[#19332b]">
       <header className="border-b border-[#d5e0d3] bg-[#fffdf6]">
         <div className="mx-auto flex h-[74px] max-w-[1440px] items-center justify-between px-4 sm:px-6 lg:px-10">
-          <Link href="/" className="flex items-center gap-3 rounded-md"><img src="/manus-storage/village-signal-mark_01384756.png" className="h-10 w-10" alt="Village Signal symbol" /><span><span className="block font-bold tracking-[-0.02em]">Village Signal</span><span className="block text-[11px] font-semibold uppercase tracking-[0.12em] text-[#6b7b73]">Industry solution marketplace</span></span></Link>
+          <Link href="/" className="flex items-center gap-3 rounded-md"><img src="/manus-storage/village-signal-mark_01384756.png" className="h-10 w-10" alt="SamadhanSetu symbol" /><span><span className="block font-bold tracking-[-0.02em]">SamadhanSetu</span><span className="block text-[11px] font-semibold uppercase tracking-[0.12em] text-[#6b7b73]">Industry solution marketplace</span></span></Link>
           <div className="flex items-center gap-3"><span className="hidden text-sm font-semibold text-[#5d7067] sm:inline">Signed in as <strong className="text-[#244d40]">{displayName}</strong></span><Button variant="outline" onClick={handleSignOut} className="rounded-full border-[#bfcebf] bg-white text-[#36594c] hover:bg-[#eef4eb]"><LogOut className="mr-2 h-4 w-4" /> Sign out</Button></div>
         </div>
       </header>
 
       <div className="mx-auto max-w-[1320px] px-4 py-8 sm:px-6 lg:px-10 lg:py-11">
-        <Link href="/" className="brand-back"><ArrowLeft className="h-4 w-4" /> Back to Village Signal</Link>
+        <Link href="/" className="brand-back"><ArrowLeft className="h-4 w-4" /> Back to SamadhanSetu</Link>
         <div className="mt-8 flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
           <div className="max-w-3xl"><div className="flex items-center gap-2 text-sm font-bold text-[#176b4d]"><Factory className="h-4 w-4" /> Collaboration desk</div><h1 className="mt-4 font-display text-4xl font-semibold tracking-[-0.05em] sm:text-6xl">Practical ideas, ready for the right partner.</h1><p className="mt-4 max-w-2xl text-base leading-7 text-[#597066]">Browse high-level university solution summaries. Express interest when your expertise, resources, or pilot capacity can help. Technical details stay protected until the next approved step.</p></div>
           <div className="flex w-fit items-center gap-2 rounded-full border border-[#c7d5c5] bg-[#fffdf6] px-4 py-2.5 text-sm font-bold text-[#315248]"><MapPin className="h-4 w-4 text-[#176b4d]" /> Jharkhand focus</div>

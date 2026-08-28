@@ -54,7 +54,6 @@ export default function Home() {
   const [, setLocation] = useLocation();
   const [activeRole, setActiveRole] = useState<RoleKey>("citizen");
   const [submitted, setSubmitted] = useState(false);
-  const [endorsed, setEndorsed] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [voiceActive, setVoiceActive] = useState(false);
   const [evidenceName, setEvidenceName] = useState("");
@@ -128,15 +127,16 @@ export default function Home() {
           <button
             className="flex items-center gap-3 rounded-md text-left focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-[#e5a53a]/35"
             onClick={() => scrollTo("top")}
-            aria-label="Village Signal home"
+                          aria-label="SamadhanSetu home"
+
           >
             <img
               className="h-10 w-10 object-contain"
               src="/manus-storage/village-signal-mark_01384756.png"
-              alt="Village Signal symbol"
+              alt="SamadhanSetu symbol"
             />
             <span>
-              <span className="block text-[17px] font-bold leading-none tracking-[-0.02em]">Village Signal</span>
+              <span className="block text-[17px] font-bold leading-none tracking-[-0.02em]">SamadhanSetu</span>
               <span className="mt-1 block text-[11px] font-medium uppercase tracking-[0.13em] text-[#62736b]">Jharkhand collaboration portal</span>
             </span>
           </button>
@@ -335,34 +335,7 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="border-b border-[#dfe4d8] bg-[#f0f3e9] py-14 sm:py-20">
-          <div className="mx-auto grid max-w-[1240px] gap-9 px-4 sm:px-6 lg:grid-cols-[1fr_0.92fr] lg:px-10">
-            <div className="overflow-hidden rounded-[26px] border border-[#d4dfd1] bg-[#e4ece1] shadow-[0_14px_35px_rgba(29,56,44,0.08)]">
-              <img src="/manus-storage/village-signal-community_5c0bcfd2.png" alt="Neighbours using their phones to confirm a local water concern" className="h-full min-h-[300px] w-full object-cover" />
-            </div>
-            <div className="flex flex-col justify-center">
-              <p className="eyebrow">Community confirmation</p>
-              <h2 className="mt-3 font-display text-4xl font-semibold tracking-[-0.04em] text-[#19332b] sm:text-5xl">The people nearby can add useful context.</h2>
-              <p className="mt-5 max-w-xl text-base leading-7 text-[#5a7066]">A report is stronger when local residents, community groups, and responsible officials can confirm that it matters.</p>
-              <article className="mt-7 border-y border-[#cfdbcf] py-5">
-                <div className="flex items-start justify-between gap-4">
-                  <div>
-                    <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-[0.13em] text-[#176b4d]"><MapPin className="h-4 w-4" /> Ranchi · Ward 12</div>
-                    <h3 className="mt-2 text-lg font-bold text-[#244d40]">Irregular drinking water supply</h3>
-                    <p className="mt-1 text-sm leading-6 text-[#63756d]">Reported by a resident. Visible on the local community feed.</p>
-                  </div>
-                  <span className="shrink-0 rounded-full bg-[#fff5df] px-3 py-1.5 text-xs font-bold text-[#8f5d16]">Needs review</span>
-                </div>
-                <div className="mt-5 flex flex-wrap gap-3">
-                  <Button variant="outline" onClick={() => { setEndorsed((value) => !value); toast.success(endorsed ? "Your confirmation was removed" : "You confirmed this affects your area"); }} className={`rounded-full border-[#b7cbb9] ${endorsed ? "bg-[#176b4d] text-white hover:bg-[#0f573d] hover:text-white" : "bg-white text-[#244d40] hover:bg-[#f7faf3]"}`}>
-                    <BadgeCheck className="mr-2 h-4 w-4" /> {endorsed ? "Confirmed by you" : "I also face this"}
-                  </Button>
-                  <Button variant="ghost" onClick={() => toast.message("This would open a short verification form in the full platform")} className="rounded-full text-[#49635a] hover:bg-[#e3ece1] hover:text-[#244d40]">Share a detail</Button>
-                </div>
-              </article>
-            </div>
-          </div>
-        </section>
+        
 
         <section id="workspace" className="scroll-mt-24 py-14 sm:py-20">
           <div className="mx-auto max-w-[1240px] px-4 sm:px-6 lg:px-10">
@@ -423,7 +396,7 @@ export default function Home() {
 
       <footer className="bg-[#193f31] text-white">
         <div className="mx-auto flex max-w-[1440px] flex-col gap-6 px-4 py-9 sm:px-6 md:flex-row md:items-center md:justify-between lg:px-10">
-          <div className="flex items-center gap-3"><img src="/manus-storage/village-signal-mark_01384756.png" alt="" className="h-10 w-10" /><div><p className="font-bold">Village Signal</p><p className="mt-1 text-sm text-[#c8dacb]">A prototype for community-led innovation.</p></div></div>
+          <div className="flex items-center gap-3"><img src="/manus-storage/village-signal-mark_01384756.png" alt="" className="h-10 w-10" /><div><p className="font-bold">SamadhanSetu</p><p className="mt-1 text-sm text-[#c8dacb]">A prototype for community-led innovation.</p></div></div>
           <div className="flex flex-wrap gap-x-6 gap-y-3 text-sm font-semibold text-[#d7e5d9]"><button onClick={() => toast.message("Help centre is represented in this prototype")} className="footer-link"><CircleHelp className="h-4 w-4" /> Help</button><button onClick={() => toast.message("Updates are represented in this prototype")} className="footer-link"><ClipboardCheck className="h-4 w-4" /> My updates</button><button onClick={() => toast.message("Public information page is represented in this prototype")} className="footer-link"><FileText className="h-4 w-4" /> About the portal</button></div>
         </div>
       </footer>

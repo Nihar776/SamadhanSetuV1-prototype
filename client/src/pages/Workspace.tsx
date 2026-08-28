@@ -4,7 +4,7 @@
  */
 import { useEffect, useState } from "react";
 import { Link, useLocation, useParams } from "wouter";
-import { ArrowRight, Bell, Building2, CheckCircle2, ClipboardCheck, FileText, LogOut, MapPin, ShieldCheck, Sparkles } from "lucide-react";
+import { ArrowRight, BadgeCheck, Bell, Building2, CheckCircle2, ClipboardCheck, FileText, LogOut, MapPin, ShieldCheck, Sparkles } from "lucide-react";
 import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import IndustryDashboard from "@/pages/IndustryDashboard";
@@ -78,6 +78,7 @@ export default function Workspace() {
   const params = useParams<{ role?: string }>();
   const [, setLocation] = useLocation();
   const [session, setSession] = useState<PortalSession | null>(null);
+  const [endorsed, setEndorsed] = useState(false);
   const role = params.role;
 
   useEffect(() => {
@@ -119,7 +120,8 @@ export default function Workspace() {
     <main className="min-h-screen bg-[#f4f6ee] text-[#19332b]">
       <header className="border-b border-[#d5e0d3] bg-[#fffdf6]">
         <div className="mx-auto flex h-[74px] max-w-[1440px] items-center justify-between px-4 sm:px-6 lg:px-10">
-          <Link href="/" className="flex items-center gap-3 rounded-md"><img src="/manus-storage/village-signal-mark_01384756.png" className="h-10 w-10" alt="Village Signal symbol" /><span><span className="block font-bold tracking-[-0.02em]">Village Signal</span><span className="block text-[11px] font-semibold uppercase tracking-[0.12em] text-[#6b7b73]">{detail.workspace}</span></span></Link>
+          <Link href="/" className="flex items-center gap-3 rounded-md"><img src="/manus-storage/village-signal-mark_01384756.png" className="h-10 w-10" alt="SamadhanSetu symbol" /><span><span className="block font-bold tracking-[-0.02em]">SamadhanSetu</span>
+<span className="block text-[11px] font-semibold uppercase tracking-[0.12em] text-[#6b7b73]">{detail.workspace}</span></span></Link>
           <div className="flex items-center gap-3"><span className="hidden text-sm font-semibold text-[#5d7067] sm:inline">Signed in as <strong className="text-[#244d40]">{detail.shortTitle}</strong></span><Button variant="outline" onClick={handleSignOut} className="rounded-full border-[#bfcebf] bg-white text-[#36594c] hover:bg-[#eef4eb]"><LogOut className="mr-2 h-4 w-4" /> Sign out</Button></div>
         </div>
       </header>
@@ -143,6 +145,11 @@ export default function Workspace() {
           <article className="workspace-mini-card"><FileText className="h-5 w-5 text-[#176b4d]" /><h2>Secure records</h2><p>Documents and approvals are separated by responsibility in the full platform.</p></article>
           <article className="workspace-mini-card"><Sparkles className="h-5 w-5 text-[#176b4d]" /><h2>Shared outcomes</h2><p>Progress stays connected to the original community challenge.</p></article>
         </section>
+
+        {role === "citizen" && <section className="mt-7 grid gap-7 rounded-[26px] border border-[#d5e0d3] bg-[#eef3e9] p-5 sm:p-8 lg:grid-cols-[0.8fr_1.2fr] lg:items-center">
+          <div className="overflow-hidden rounded-[20px] border border-[#d4dfd1] bg-[#e4ece1]"><img src="/manus-storage/village-signal-community_5c0bcfd2.png" alt="A locality marker and community water point used for confirmation" className="h-full min-h-[250px] w-full object-cover" /></div>
+          <div><p className="eyebrow">Community confirmation</p><h2 className="mt-3 font-display text-3xl font-semibold tracking-[-0.04em] sm:text-4xl">The people nearby can add useful context.</h2><p className="mt-4 max-w-xl text-base leading-7 text-[#5a7066]">Confirm that the issue affects your area so the report can reach the right verification queue.</p><article className="mt-6 border-y border-[#cfdbcf] py-5"><div className="flex items-start justify-between gap-4"><div><div className="flex items-center gap-2 text-xs font-bold uppercase tracking-[0.13em] text-[#176b4d]"><MapPin className="h-4 w-4" /> Ranchi · Ward 12</div><h3 className="mt-2 text-lg font-bold text-[#244d40]">Irregular drinking water supply</h3><p className="mt-1 text-sm leading-6 text-[#63756d]">Reported by a resident. Visible on the local community feed.</p></div><span className="shrink-0 rounded-full bg-[#fff5df] px-3 py-1.5 text-xs font-bold text-[#8f5d16]">Needs review</span></div><div className="mt-5 flex flex-wrap gap-3"><Button variant="outline" onClick={() => { setEndorsed((value) => !value); toast.success(endorsed ? "Your confirmation was removed" : "You confirmed this affects your area"); }} className={`rounded-full border-[#b7cbb9] ${endorsed ? "bg-[#176b4d] text-white hover:bg-[#0f573d] hover:text-white" : "bg-white text-[#244d40] hover:bg-[#f7faf3]"}`}><BadgeCheck className="mr-2 h-4 w-4" /> {endorsed ? "Confirmed by you" : "I also face this"}</Button><Button variant="ghost" onClick={() => toast.message("This would open a short verification form in the full platform")} className="rounded-full text-[#49635a] hover:bg-[#e3ece1] hover:text-[#244d40]">Share a detail</Button></div></article></div>
+        </section>}
       </div>
     </main>
   );
